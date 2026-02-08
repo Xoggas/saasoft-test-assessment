@@ -2,7 +2,7 @@
 </script>
 
 <template>
-
+  <Button>Verify</Button>
 </template>
 
 <style scoped>

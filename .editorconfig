@@ -1,0 +1,2 @@
+[{*.ts,*.js,*.html,*.css,*.vue}]
+indent_size = 2
