@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {useAccountStore} from "../stores/useAccountStore.ts";
 import {storeToRefs} from "pinia";
-import Account from "./Account.vue";
+import AccountItem from "./AccountItem.vue";
 
 const accountsStore = useAccountStore();
 const {accounts} = storeToRefs(accountsStore);
@@ -16,7 +16,7 @@ const {accounts} = storeToRefs(accountsStore);
       <p class="header-text">Пароль</p>
     </div>
     <div v-for="account in accounts" :key="account.id" class="account-row">
-      <Account :account="account"/>
+      <AccountItem :account="account"/>
     </div>
   </div>
 </template>

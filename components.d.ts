@@ -12,6 +12,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Account: typeof import('./src/components/Account.vue')['default']
+    AccountItem: typeof import('./src/components/AccountItem.vue')['default']
     AccountsList: typeof import('./src/components/AccountsList.vue')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
