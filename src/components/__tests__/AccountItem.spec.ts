@@ -68,18 +68,29 @@ describe('AccountItem.vue Test', () => {
     expect(wrapper.find('input[name="password"]').exists()).toBeFalsy();
   });
 
-  it('Корректно обновляет модель в сторе после изменения меток', async () => {
-    const textarea = wrapper.get('textarea[name="marks"]');
-    await textarea.setValue('1;2;3');
-    await textarea.trigger('blur');
-
-    const expectedAccount: Account = {
-      id: 1,
+  const markCases = [
+    {
+      value: '1;2;3',
       marks: [
         {text: '1'},
         {text: '2'},
         {text: '3'},
-      ],
+      ]
+    },
+    {
+      value: '',
+      marks: []
+    }
+  ]
+
+  it.each(markCases)('Корректно обновляет модель в сторе после изменения меток $value', async ({value, marks}) => {
+    const textarea = wrapper.get('textarea[name="marks"]');
+    await textarea.setValue(value);
+    await textarea.trigger('blur');
+
+    const expectedAccount: Account = {
+      id: 1,
+      marks: marks,
       recordType: 'local',
       login: 'admin',
       password: '12345678',

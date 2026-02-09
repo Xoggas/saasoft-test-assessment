@@ -73,7 +73,7 @@ function validateAllAndSubmit() {
 function submit() {
   const account: Account = {
     id: props.account.id,
-    marks: model.value.marks.split(';').map(m => m.trim()).map(m => {
+    marks: model.value.marks.split(';').map(m => m.trim()).filter(m => !!m).map(m => {
       return {
         text: m
       }
