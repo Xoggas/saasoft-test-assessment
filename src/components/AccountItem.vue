@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, ref, watchEffect} from "vue";
+import {ref, watchEffect} from "vue";
 import {useAccountStore} from "../stores/useAccountStore.ts";
 import type {Account, RecordType} from "../models/account.model.ts";
 import {z} from 'zod';
@@ -27,13 +27,11 @@ const recordTypes = [
   {name: 'LDAP', value: 'ldap'}
 ] as RecordTypeModel[];
 
-const model = computed<AccountModel>(() => {
-  return {
-    marks: props.account.marks.map(m => m.text).join('; '),
-    recordType: recordTypes.find(rt => rt.value == props.account.recordType)!,
-    login: props.account.login,
-    password: props.account.password,
-  }
+const model = ref<AccountModel>({
+  marks: props.account.marks.map(m => m.text).join('; '),
+  recordType: recordTypes.find(rt => rt.value == props.account.recordType)!,
+  login: props.account.login,
+  password: props.account.password,
 });
 
 watchEffect(() => {
@@ -87,6 +85,10 @@ function submit() {
 
   updateAccount(props.account.id, account);
 }
+
+defineExpose({
+  model
+});
 </script>
 
 <template>
